@@ -40,7 +40,7 @@
         "buildTimeoutInMinutes": 120,
 
         "vmProfile": {
-          "vmSize": "Standard_D2_v2",
+          "vmSize": "Standard_D2s_v3",
           "osDiskSizeGB": 127
         },
 
@@ -48,7 +48,7 @@
           "type": "PlatformImage",
           "publisher": "MicrosoftWindowsDesktop",
           "offer": "windows-10",
-          "sku": "20h1-ent",
+          "sku": "win10-21h2-avd-g2",
           "version": "latest"
         },
         "customize": [
@@ -74,7 +74,7 @@
             "scriptUri": "https://raw.githubusercontent.com/danielsollondon/azvmimagebuilder/master/solutions/14_Building_Images_WVD/2_installTeams.ps1"
           },
           {
-            "type": "7-Zip",
+            "type": "PowerShell",
             "name": "Install 7-Zip",
             "runElevated": true,
             "runAsSystem": true,
