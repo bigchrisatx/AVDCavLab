@@ -1,17 +1,7 @@
 {
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "imageTemplateName": {
-      "type": "string"
-    },
-    "api-version": {
-      "type": "string"
-    },
-    "svclocation": {
-      "type": "string"
-    }
-  },
+
 
   "variables": {
   },
@@ -19,10 +9,10 @@
 
   "resources": [
     {
-      "name": "[parameters('imageTemplateName')]",
+      "name": "MMSAVDImageTemplate01",
       "type": "Microsoft.VirtualMachineImages/imageTemplates",
-      "apiVersion": "[parameters('api-version')]",
-      "location": "[parameters('svclocation')]",
+      "apiVersion": "2020-02-14",
+      "location": "eastus",
       "dependsOn": [],
       "tags": {
         "imagebuilderTemplate": "AzureImageBuilderSIG",
@@ -31,7 +21,7 @@
       "identity": {
         "type": "UserAssigned",
         "userAssignedIdentities": {
-          "<imgBuilderId>": {}
+          "/subscriptions/cf2e8aee-9844-4d85-aa8e-c31b7776b800/resourcegroups/MMSAIBAVDRSG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIDMMS": {}
 
         }
       },
@@ -53,7 +43,7 @@
         },
         "customize": [
 
-         
+
           {
             "type": "PowerShell",
             "name": "OptimizeOS",
@@ -100,14 +90,14 @@
         "distribute": [
           {
             "type": "SharedImage",
-            "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
-            "runOutputName": "<runOutputName>",
+            "galleryImageId": "/subscriptions/cf2e8aee-9844-4d85-aa8e-c31b7776b800/resourceGroups/MMSAIBAVDRSG/providers/Microsoft.Compute/galleries/MMSImageGallery/images/MMSwin10avd",
+            "runOutputName": "sigOutput",
             "artifactTags": {
               "source": "wvd10",
               "baseosimg": "windows10"
             },
             "replicationRegions": [
-              "<region1>"
+              "eastus"
 
             ]
           }
@@ -118,3 +108,11 @@
 
   ]
 }    
+
+
+
+
+
+
+
+
